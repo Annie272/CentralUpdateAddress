@@ -1059,6 +1059,17 @@ if (!el.value.trim()) missing.push(field.label);
 }
 });
 
+if (!mailingSection.classList.contains('hidden')) {
+  const mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
+  mailingRequired.forEach(input => {
+    if (!input.value.trim()) {
+      const labelEl = input.previousElementSibling;
+      const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+      missing.push(`Mailing Address - ${label}`);
+    }
+  });
+}
+  
 // ===== ONLY VALIDATE GARAGING IF SECTION VISIBLE =====
 if (!garagingSection.classList.contains('hidden')) {
   for (let i = 1; i <= currentLocations; i++) {
@@ -1105,6 +1116,20 @@ missing.push(field.label);
 filled.push(`${field.label} = ${el.value.trim()}`);
 }
 });
+
+// ===== MAILING ADDRESS - CAPTURE IF VISIBLE =====
+if (!mailingSection.classList.contains("hidden")) {
+  const mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
+  mailingRequired.forEach(input => {
+    const labelEl = input.previousElementSibling;
+    const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+    if (!input.value.trim()) {
+      missing.push(`Mailing Address - ${label}`);
+    } else {
+      filled.push(`Mailing Address - ${label} = ${input.value.trim()}`);
+    }
+  });
+}
 
 // ===== VISIBLE GARAGING LOCATIONS =====
 for (let i = 1; i <= currentLocations; i++) {
