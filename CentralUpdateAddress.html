@@ -901,6 +901,12 @@ const locationsContainer = document.getElementById("garagingLocationsContainer")
 const addLocationBtn = document.getElementById("addLocationBtn");
 const removeLocationBtn = document.getElementById("removeLocationBtn");
 
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    return false;
+});
+  
 /* ===================== DATE PICKER ===================== */
 if (window.Pikaday) {
 new Pikaday({
