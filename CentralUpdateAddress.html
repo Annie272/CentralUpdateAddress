@@ -900,7 +900,14 @@ const garagingSection = document.getElementById("garagingLocationsSection");
 const locationsContainer = document.getElementById("garagingLocationsContainer");
 const addLocationBtn = document.getElementById("addLocationBtn");
 const removeLocationBtn = document.getElementById("removeLocationBtn");
+const reviewBtn = document.getElementById("reviewBtn");
+const dialog = document.getElementById("dialog");
+const dialogTitle = document.getElementById("dialogTitle");
+const missingFieldsList = document.getElementById("missingFieldsList");
+const proceedBtn = document.getElementById("proceedBtn");
+const editBtn = document.getElementById("editBtn");
 
+// === PREVENT AUTO-SUBMISSION ===
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -1020,14 +1027,6 @@ removeLocationBtn.disabled = true;
 }
 });
 
-/* ===================== FORM ELEMENTS ===================== */
-const reviewBtn = document.getElementById("reviewBtn");
-const dialog = document.getElementById("dialog");
-const dialogTitle = document.getElementById("dialogTitle");
-const missingFieldsList = document.getElementById("missingFieldsList");
-const proceedBtn = document.getElementById("proceedBtn");
-const editBtn = document.getElementById("editBtn");
-
 const requiredFields = [
 { id: "email", label: "Email", type: "email" },
 { radioGroupName: "requestTypeRadios", label: "Select the Request Type:" },
@@ -1037,7 +1036,7 @@ const requiredFields = [
 { radioGroupName: "sameAsGaraging", label: "Garaging address selection" }
 ];
 
-/* ===================== VALIDATION ===================== */
+/* ===================== VALIDATION - FIXED ===================== */
 function validateFields() {
 const missing = [];
 requiredFields.forEach(field => {
@@ -1059,100 +1058,94 @@ if (!val || !dateRegex.test(val)) missing.push(field.label);
 if (!el.value.trim()) missing.push(field.label);
 }
 });
-// Validate visible garaging locations
-for (let i = 1; i <= currentLocations; i++) {
-const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
-if (locationDiv && !locationDiv.classList.contains('hidden')) {
-const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
-requiredInputs.forEach(input => {
-if (!input.value.trim()) {
-missing.push(`Location ${i} - ${input.previousElementSibling ? input.previousElementSibling.textContent.trim().replace('*', '') : 'Field'}`);
-}
-});
-}
+
+// ===== ONLY VALIDATE GARAGING IF SECTION VISIBLE =====
+if (!garagingSection.classList.contains('hidden')) {
+  for (let i = 1; i <= currentLocations; i++) {
+    const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+    if (locationDiv && !locationDiv.classList.contains('hidden')) {
+      const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
+      requiredInputs.forEach(input => {
+        if (!input.value.trim()) {
+          const labelEl = input.previousElementSibling;
+          const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+          missing.push(`Location ${i} - ${label}`);
+        }
+      });
+    }
+  }
 }
 return missing;
 }
 
 /* ===================== FORM CAPTURE ===================== */
 function captureFormData() {
+const missing = [];
+const filled = [];
 
-  const missing = [];
-  const filled = [];
+// ===== REQUIRED FIELDS =====
+requiredFields.forEach(field => {
+if (field.radioGroupName) {
+const radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
+const checked = [...radios].find(r => r.checked);
+if (checked) {
+const label = field.label;
+const value = checked.value;
+filled.push(`${label} = ${value}`);
+} else {
+missing.push(field.label);
+}
+return;
+}
 
-  // ===== REQUIRED FIELDS =====
-  requiredFields.forEach(field => {
+const el = document.getElementById(field.id);
+if (!el || !el.value.trim()) {
+missing.push(field.label);
+} else {
+filled.push(`${field.label} = ${el.value.trim()}`);
+}
+});
 
-    if (field.radioGroupName) {
-      const radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
-      const checked = [...radios].find(r => r.checked);
+// ===== VISIBLE GARAGING LOCATIONS =====
+for (let i = 1; i <= currentLocations; i++) {
+const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+if (locationDiv && !locationDiv.classList.contains("hidden")) {
+const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
+requiredInputs.forEach(input => {
+const labelEl = input.previousElementSibling;
+const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+if (!input.value.trim()) {
+missing.push(`Location ${i} - ${label}`);
+} else {
+filled.push(`Location ${i} - ${label} = ${input.value.trim()}`);
+}
+});
+}
+}
 
-      if (checked) {
-        const label = field.label;
-        const value = checked.value;
-        filled.push(`${label} = ${value}`);
-      } else {
-        missing.push(field.label);
-      }
-      return;
-    }
+// ===== WRITE INTO HIDDEN SALESFORCE FIELDS =====
+let missingField = document.getElementById("Form_Missing_Data__c");
+let capturedField = document.getElementById("Form_Captured_Data__c");
 
-    const el = document.getElementById(field.id);
+if (!missingField) {
+missingField = document.createElement("input");
+missingField.type = "hidden";
+missingField.id = "Form_Missing_Data__c";
+missingField.name = "Form_Missing_Data__c";
+form.appendChild(missingField);
+}
 
-    if (!el || !el.value.trim()) {
-      missing.push(field.label);
-    } else {
-      filled.push(`${field.label} = ${el.value.trim()}`);
-    }
-  });
+if (!capturedField) {
+capturedField = document.createElement("input");
+capturedField.type = "hidden";
+capturedField.id = "Form_Captured_Data__c";
+capturedField.name = "Form_Captured_Data__c";
+form.appendChild(capturedField);
+}
 
-  // ===== VISIBLE GARAGING LOCATIONS =====
-  for (let i = 1; i <= currentLocations; i++) {
-
-    const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
-
-    if (locationDiv && !locationDiv.classList.contains("hidden")) {
-
-      const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
-
-      requiredInputs.forEach(input => {
-        const labelEl = input.previousElementSibling;
-        const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
-
-        if (!input.value.trim()) {
-          missing.push(`Location ${i} - ${label}`);
-        } else {
-          filled.push(`Location ${i} - ${label} = ${input.value.trim()}`);
-        }
-      });
-    }
-  }
-
-  // ===== WRITE INTO HIDDEN SALESFORCE FIELDS =====
-  let missingField = document.getElementById("Form_Missing_Data__c");
-  let capturedField = document.getElementById("Form_Captured_Data__c");
-
-  if (!missingField) {
-    missingField = document.createElement("input");
-    missingField.type = "hidden";
-    missingField.id = "Form_Missing_Data__c";
-    missingField.name = "Form_Missing_Data__c";
-    form.appendChild(missingField);
-  }
-
-  if (!capturedField) {
-    capturedField = document.createElement("input");
-    capturedField.type = "hidden";
-    capturedField.id = "Form_Captured_Data__c";
-    capturedField.name = "Form_Captured_Data__c";
-    form.appendChild(capturedField);
-  }
-
-  missingField.value = missing.join("\n");
-  capturedField.value = filled.join("\n");
-
-  // keep existing logic
-  updateGaragingFields();
+missingField.value = missing.join("\n");
+capturedField.value = filled.join("\n");
+updateGaragingFields(); // Ensure Y/N fields updated
 }
 
 /* ===================== UI FLOW ===================== */
