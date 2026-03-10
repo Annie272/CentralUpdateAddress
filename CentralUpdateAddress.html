@@ -214,7 +214,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>  
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
 </select>
 </div>
 <div>
@@ -330,7 +330,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
 </select><br>
 </select>
 </div>
@@ -442,7 +442,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
 </select><br>
 </select>
 </div>
@@ -554,8 +554,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
 </select>
 </div>
 <div>
@@ -666,7 +665,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
 </select><br>
 </select>
 </div>
@@ -778,8 +777,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
 </select>
 </div>
 <div>
@@ -890,8 +888,7 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
 </select>
 </div>
 <div>
@@ -1022,6 +1019,18 @@ syncRadioToHidden("requestTypeRadios", "00NU7000006IOzh");
 syncRadioToHidden("changeMailingAddress", "00NU7000007xdVx");
 syncRadioToHidden("sameAsGaraging", "00NU7000007xdan");
 
+/* ===================== FIELD CLEARING FUNCTION ===================== */
+function clearLocationFields(locationNum) {
+const locationDiv = locationsContainer.querySelector(`[data-location="${locationNum}"]`);
+if (locationDiv) {
+  // Clear all input and select fields in this location
+  const inputs = locationDiv.querySelectorAll('input[type="text"], input[type="email"], select');
+  inputs.forEach(input => {
+    input.value = '';
+  });
+}
+}
+
 /* ===================== SECTION LOGIC ===================== */
 document.querySelectorAll('input[name="changeMailingAddress"]').forEach(radio => {
 radio.addEventListener("change", function() {
@@ -1030,12 +1039,56 @@ mailingSection.classList.toggle("hidden", this.value !== "Y");
 });
 
 document.querySelectorAll('input[name="sameAsGaraging"]').forEach(radio => {
-radio.addEventListener("change", function() {
-garagingSection.classList.toggle("hidden", this.value !== "N");
-updateGaragingFields();
-});
-});
+  radio.addEventListener("change", function () {
 
+    if (this.value === "N") {
+      // User wants different garaging addresses → show section
+      garagingSection.classList.remove("hidden");
+
+      // Ensure at least Location 1 is visible
+      const firstLocation = locationsContainer.querySelector('[data-location="1"]');
+      if (firstLocation) firstLocation.classList.remove("hidden");
+
+      currentLocations = 1;
+      removeLocationBtn.disabled = true;
+      addLocationBtn.disabled = false;
+      addLocationBtn.textContent = "Add Location";
+
+    } else if (this.value === "Y") {
+  // SAME as garaging → hide & FULLY reset ALL locations (including Location 1)
+  garagingSection.classList.add("hidden");
+
+  // Clear Location 1 FIRST (critical fix)
+  clearLocationFields(1);
+  
+  // Hide ALL locations (1-6)
+  for (let i = 1; i <= maxLocations; i++) {
+    const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+    if (locationDiv) {
+      locationDiv.classList.add("hidden");
+      
+      // Double-clear all inputs & selects in this location
+      const inputs = locationDiv.querySelectorAll("input, select");
+      inputs.forEach(input => {
+        input.value = "";
+      });
+    }
+    
+    // Reset hidden Salesforce Y/N flags to "N"
+    const fieldId = locationFieldIds[i];
+    const field = document.getElementById(fieldId);
+    if (field) field.value = "N";
+  }
+
+  // Reset counter and buttons
+  currentLocations = 1;
+  addLocationBtn.disabled = false;
+  addLocationBtn.textContent = "Add Location";
+  removeLocationBtn.disabled = true;
+}
+    updateGaragingFields();
+  });
+});
 /* ===================== GARAGING LOCATIONS MANAGEMENT ===================== */
 let currentLocations = 1;
 const maxLocations = 6;
