@@ -1017,7 +1017,22 @@ sync();
 // Sync all radio groups
 syncRadioToHidden("requestTypeRadios", "00NU7000006IOzh");
 syncRadioToHidden("changeMailingAddress", "00NU7000007xdVx");
-syncRadioToHidden("sameAsGaraging", "00NU7000007xdan");
+const sameAsGaragingRadios = document.querySelectorAll('input[name="sameAsGaraging"]');
+const sameAsGaragingHidden = document.getElementById("00NU7000007xdan");
+
+function syncSameAsGaraging() {
+  const checked = document.querySelector('input[name="sameAsGaraging"]:checked');
+  if (!checked) {
+    sameAsGaragingHidden.value = "";
+    return;
+  }
+
+  // INVERT VALUE
+  sameAsGaragingHidden.value = checked.value === "Y" ? "N" : "Y";
+}
+
+sameAsGaragingRadios.forEach(r => r.addEventListener("change", syncSameAsGaraging));
+syncSameAsGaraging();
 
 /* ===================== FIELD CLEARING FUNCTION ===================== */
 function clearLocationFields(locationNum) {
