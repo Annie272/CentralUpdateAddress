@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Central Insurace Form</title>
+<title>Central Insurance Form</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css" />
 <style>
@@ -17,6 +17,7 @@
 }
 .location-section { border: 1px solid #d1d5db; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1rem; background: #f9fafb; }
 .blank-address { border: 1px solid #d1d5db; }
+.all-form-data { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; }
 </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
@@ -28,6 +29,15 @@ class="bg-white p-8 rounded-2xl shadow-md w-full max-w-4xl space-y-8"
 autocomplete="off"
 novalidate
 >
+<textarea
+  id="00NU7000008TS4L"
+  name="All_Form_Data__c"
+  rows="50"
+  type="text"
+  wrap="soft"
+  class="hidden all-form-data"
+></textarea>
+
 <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
 Update Address Central Insurance Form
 </h2>
@@ -107,7 +117,7 @@ required
 <label class="inline-flex items-center">
 <input type="radio" name="changeMailingAddress" value="N" class="mr-2" required /> No
 </label>
-<select id="00NU7000007xdVx" name="00NU7000007xdVx" class="hidden">
+<select id="00NU7000007xdVx" name="Do_you_want_to_change_mailing_address__c" class="hidden">
 <option value=""></option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -120,7 +130,7 @@ required
 <label class="inline-flex items-center">
 <input type="radio" name="sameAsGaraging" value="N" class="mr-2" required /> No
 </label>
-<select id="00NU7000007xdan" name="00NU7000007xdan" class="hidden">
+<select id="00NU7000007xdan" name="IfChangeGaragingAddress__c" class="hidden">
 <option value=""></option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -137,11 +147,11 @@ required
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000005zvUj" maxlength="30" name="00NU7000005zvUj" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000005zvUj" maxlength="30" name="City__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007qKoD" name="00NU7000007qKoD" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007qKoD" name="State_Central_1__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -214,12 +224,13 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
+   
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000006cbfp" maxlength="30" name="00NU7000006cbfp" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006cbfp" maxlength="30" name="Interest_Zip_Code__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
 </section>
@@ -238,26 +249,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007EGYk" maxlength="30" name="00NU7000007EGYk" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007EGYk" maxlength="30" name="Vehicle_Year__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU70000063XnC" maxlength="255" name="00NU70000063XnC" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU70000063XnC" maxlength="255" name="Vehicle_Name__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000006qtOL" maxlength="30" name="00NU7000006qtOL" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qtOL" maxlength="30" name="Address_Line_1_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000006qtg5" maxlength="30" name="00NU7000006qtg5" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000006qtg5" maxlength="30" name="Address_Line_1_2_Gl__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000006qtcr" maxlength="255" name="00NU7000006qtcr" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qtcr" maxlength="255" name="City_1_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xgC5" name="00NU7000007xgC5" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xgC5" name="GaragingStateVehicle1__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -330,16 +341,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000006qtZd" maxlength="30" name="00NU7000006qtZd" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qtZd" maxlength="30" name="Zip_Code_1_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xdm5" name="00NU7000007xdm5" class="hidden">
+<select id="00NU7000007xdm5" name="changeGaragingAddressVehicle1__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -350,26 +360,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007xebh" maxlength="30" name="00NU7000007xebh" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xebh" maxlength="30" name="Vehicle_Year_2__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU7000007xerp" maxlength="50" name="00NU7000007xerp" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xerp" maxlength="50" name="Vehicle_Name_2__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000006qtTB" maxlength="255" name="00NU7000006qtTB" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qtTB" maxlength="255" name="Address_Line_2_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000006qthh" maxlength="255" name="00NU7000006qthh" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000006qthh" maxlength="255" name="Address_Line_2_2_GL__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000006qsRW" maxlength="255" name="00NU7000006qsRW" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qsRW" maxlength="255" name="City_2_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xgDh" name="00NU7000007xgDh" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xgDh" name="GaragingStateVehicle2__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -442,16 +452,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000006qtjJ" maxlength="30" name="00NU7000006qtjJ" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000006qtjJ" maxlength="30" name="Zip_Code_2_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xdsX" name="00NU7000007xdsX" class="hidden">
+<select id="00NU7000007xdsX" name="changeGaragingAddressVehicle2__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -462,26 +471,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007xegX" maxlength="30" name="00NU7000007xegX" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xegX" maxlength="30" name="Vehicle_Year_3__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU7000007xegY" maxlength="50" name="00NU7000007xegY" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xegY" maxlength="50" name="Vehicle_Name_3__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000007xfEP" maxlength="30" name="00NU7000007xfEP" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfEP" maxlength="30" name="Address_Line_3_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000007xfG1" maxlength="30" name="00NU7000007xfG1" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000007xfG1" maxlength="30" name="Address_Line_3_2_GL__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000007xfvx" maxlength="50" name="00NU7000007xfvx" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfvx" maxlength="50" name="City_3_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xgFJ" name="00NU7000007xgFJ" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xgFJ" name="GaragingStateVehicle3__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -554,15 +563,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000007xeS2" maxlength="30" name="00NU7000007xeS2" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xeS2" maxlength="30" name="Zip_Code_3_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xdyz" name="00NU7000007xdyz" class="hidden">
+<select id="00NU7000007xdyz" name="changeGaragingAddressVehicle3__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -573,26 +582,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007xejl" maxlength="30" name="00NU7000007xejl" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xejl" maxlength="30" name="Vehicle_Year_4__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU7000007xewf" maxlength="50" name="00NU7000007xewf" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xewf" maxlength="50" name="Vehicle_Name_4__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000007xfMT" maxlength="30" name="00NU7000007xfMT" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfMT" maxlength="30" name="Address_Line_4_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000007xfO5" maxlength="30" name="00NU7000007xfO5" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000007xfO5" maxlength="30" name="Address_Line_4_2_GL__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000007xfxZ" maxlength="50" name="00NU7000007xfxZ" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfxZ" maxlength="50" name="City_4_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xdz0" name="00NU7000007xdz0" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xdz0" name="GaragingStateVehicle4__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -665,16 +674,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   
-</select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000007xgX3" maxlength="30" name="00NU7000007xgX3" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xgX3" maxlength="30" name="Zip_Code_4_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xe5R" name="00NU7000007xe5R" class="hidden">
+<select id="00NU7000007xe5R" name="changeGaragingAddressVehicle4__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -685,26 +693,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007xelN" maxlength="30" name="00NU7000007xelN" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xelN" maxlength="30" name="Vehicle_Year_5__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU7000007xezt" maxlength="50" name="00NU7000007xezt" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xezt" maxlength="50" name="Vehicle_Name_5__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000007xc3g" maxlength="30" name="00NU7000007xc3g" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xc3g" maxlength="30" name="Address_Line_5_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000007xeyI" maxlength="30" name="00NU7000007xeyI" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000007xeyI" maxlength="30" name="Address_Line_5_2_GL__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000007xfzB" maxlength="50" name="00NU7000007xfzB" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfzB" maxlength="50" name="City_5_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xgK9" name="00NU7000007xgK9" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xgK9" name="GaragingStateVehicle5__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -777,15 +785,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000007xgYf" maxlength="30" name="00NU7000007xgYf" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xgYf" maxlength="30" name="Zip_Code_5_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xeGj" name="00NU7000007xeGj" class="hidden">
+<select id="00NU7000007xeGj" name="changeGaragingAddressVehicle5__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -796,26 +804,26 @@ required
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Year<span class="star">*</span></label>
-<input id="00NU7000007xeob" maxlength="30" name="00NU7000007xeob" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xeob" maxlength="30" name="Vehicle_Year_6__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Vehicle Name<span class="star">*</span></label>
-<input id="00NU7000007xf4j" maxlength="50" name="00NU7000007xf4j" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xf4j" maxlength="50" name="Vehicle_Name_6__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
 <label class="block text-sm font-medium text-gray-700 mb-2">Address<span class="star">*</span></label>
-<input id="00NU7000007xfXl" maxlength="30" name="00NU7000007xfXl" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xfXl" maxlength="30" name="Address_Line_6_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div class="md:col-span-2">
-<input id="00NU7000007xfcb" maxlength="30" name="00NU7000007xfcb" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
+<input id="00NU7000007xfcb" maxlength="30" name="Address_Line_6_2_GL__c" type="text" class="w-full p-2 border border-gray-300 rounded-lg blank-address" />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">City<span class="star">*</span></label>
-<input id="00NU7000007xg0n" maxlength="50" name="00NU7000007xg0n" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xg0n" maxlength="50" name="City_6_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">State<span class="star">*</span></label>
-<select id="00NU7000007xgLl" name="00NU7000007xgLl" class="w-full p-2 border border-gray-300 rounded-lg" required>
+<select id="00NU7000007xgLl" name="GaragingStateVehicle6__c" class="w-full p-2 border border-gray-300 rounded-lg" required>
 <option value="">--None--</option>
 <option value="AF OTHER">AF OTHER</option>
 <option value="AF PACIFIC">AF PACIFIC</option>
@@ -888,15 +896,15 @@ required
 <option value="WEST VIRGINIA">WEST VIRGINIA</option>
 <option value="WISCONSIN">WISCONSIN</option>
 <option value="WYOMING">WYOMING</option>
-<option value="YUKON TERRITOR">YUKON TERRITOR</option>   </select><br>
+<option value="YUKON TERRITOR">YUKON TERRITOR</option> 
 </select>
 </div>
 <div>
 <label class="block text-sm font-medium text-gray-700 mb-2">Zip Code<span class="star">*</span></label>
-<input id="00NU7000007xgaH" maxlength="30" name="00NU7000007xgaH" class="w-full p-2 border border-gray-300 rounded-lg" required />
+<input id="00NU7000007xgaH" maxlength="30" name="Zip_Code_6_GL__c" class="w-full p-2 border border-gray-300 rounded-lg" required />
 </div>
 </div>
-<select id="00NU7000007xeIL" name="00NU7000007xeIL" class="hidden">
+<select id="00NU7000007xeIL" name="changeGaragingAddressVehicle6__c" class="hidden">
 <option value="">--None--</option><option value="Y">Y</option><option value="N">N</option>
 </select>
 </div>
@@ -906,12 +914,13 @@ required
 <button type="button" id="removeLocationBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 font-medium" disabled>Remove Location</button>
 </div>
 </section>
+</section>
 
 <!-- Hidden Salesforce fields -->
 <input type="hidden" name="oid" value="00DU7000006EuID" />
 <input type="hidden" name="retURL" value="https://bennettandporter.com/" />
-<input type="hidden" name="first_name" value="Central Insurance Update Address" />
-<input type="hidden" name="last_name" value="Demo" />
+<input type="hidden" name="first_name" value="Update Address" />
+<input type="hidden" name="last_name" value="Central" />
 <input type="hidden" name="status" value="New" />
 <input type="hidden" name="phone" value="28436334529" />
 <input type="hidden" name="lead_source" value="Web Form" />
@@ -976,6 +985,7 @@ const dialogTitle = document.getElementById("dialogTitle");
 const missingFieldsList = document.getElementById("missingFieldsList");
 const proceedBtn = document.getElementById("proceedBtn");
 const editBtn = document.getElementById("editBtn");
+const allFormDataTextarea = document.getElementById("00NU7000008TS4L");
 
 // === PREVENT AUTO-SUBMISSION ===
 form.addEventListener('submit', function(e) {
@@ -993,121 +1003,110 @@ toString(date) {
 const d = String(date.getDate()).padStart(2, "0");
 const m = String(date.getMonth() + 1).padStart(2, "0");
 const y = date.getFullYear();
-return `${m}/${d}/${y}`;
+return m + "/" + d + "/" + y;
 },
 parse(dateString) {
-const [m, d, y] = dateString.split("/");
-return new Date(y, m - 1, d);
+const parts = dateString.split("/");
+return new Date(parts[2], parts[0] - 1, parts[1]);
 },
 });
 }
 
+/* ===================== DATE FORMAT CONVERSION (MM/DD/YYYY to YYYY-MM-DD) ===================== */
+function formatToISO(dateString) {
+  var match = dateString.trim().match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/);
+  if (!match) return "";
+  return match[3] + "-" + match[1] + "-" + match[2];
+}
+
 /* ===================== RADIO → HIDDEN FIELD SYNCING ===================== */
 function syncRadioToHidden(radioName, hiddenId) {
-const radios = document.querySelectorAll(`input[name="${radioName}"]`);
-const hiddenSelect = document.getElementById(hiddenId);
+var radios = document.querySelectorAll('input[name="' + radioName + '"]');
+var hiddenSelect = document.getElementById(hiddenId);
 function sync() {
-const checkedRadio = document.querySelector(`input[name="${radioName}"]:checked`);
+var checkedRadio = document.querySelector('input[name="' + radioName + '"]:checked');
 hiddenSelect.value = checkedRadio ? checkedRadio.value : "";
 }
-radios.forEach(radio => radio.addEventListener("change", sync));
+radios.forEach(function(radio) { radio.addEventListener("change", sync); });
 sync();
 }
 
 // Sync all radio groups
 syncRadioToHidden("requestTypeRadios", "00NU7000006IOzh");
 syncRadioToHidden("changeMailingAddress", "00NU7000007xdVx");
-const sameAsGaragingRadios = document.querySelectorAll('input[name="sameAsGaraging"]');
-const sameAsGaragingHidden = document.getElementById("00NU7000007xdan");
+var sameAsGaragingRadios = document.querySelectorAll('input[name="sameAsGaraging"]');
+var sameAsGaragingHidden = document.getElementById("00NU7000007xdan");
 
 function syncSameAsGaraging() {
-  const checked = document.querySelector('input[name="sameAsGaraging"]:checked');
+  var checked = document.querySelector('input[name="sameAsGaraging"]:checked');
   if (!checked) {
     sameAsGaragingHidden.value = "";
     return;
   }
-
   // INVERT VALUE
   sameAsGaragingHidden.value = checked.value === "Y" ? "N" : "Y";
 }
 
-sameAsGaragingRadios.forEach(r => r.addEventListener("change", syncSameAsGaraging));
+sameAsGaragingRadios.forEach(function(r) { r.addEventListener("change", syncSameAsGaraging); });
 syncSameAsGaraging();
 
 /* ===================== FIELD CLEARING FUNCTION ===================== */
 function clearLocationFields(locationNum) {
-const locationDiv = locationsContainer.querySelector(`[data-location="${locationNum}"]`);
+var locationDiv = locationsContainer.querySelector('[data-location="' + locationNum + '"]');
 if (locationDiv) {
-  // Clear all input and select fields in this location
-  const inputs = locationDiv.querySelectorAll('input[type="text"], input[type="email"], select');
-  inputs.forEach(input => {
+  var inputs = locationDiv.querySelectorAll('input[type="text"], input[type="email"], select');
+  inputs.forEach(function(input) {
     input.value = '';
   });
 }
 }
 
 /* ===================== SECTION LOGIC ===================== */
-document.querySelectorAll('input[name="changeMailingAddress"]').forEach(radio => {
+document.querySelectorAll('input[name="changeMailingAddress"]').forEach(function(radio) {
 radio.addEventListener("change", function() {
 mailingSection.classList.toggle("hidden", this.value !== "Y");
 });
 });
 
-document.querySelectorAll('input[name="sameAsGaraging"]').forEach(radio => {
+document.querySelectorAll('input[name="sameAsGaraging"]').forEach(function(radio) {
   radio.addEventListener("change", function () {
-
     if (this.value === "N") {
-      // User wants different garaging addresses → show section
       garagingSection.classList.remove("hidden");
-
-      // Ensure at least Location 1 is visible
-      const firstLocation = locationsContainer.querySelector('[data-location="1"]');
+      var firstLocation = locationsContainer.querySelector('[data-location="1"]');
       if (firstLocation) firstLocation.classList.remove("hidden");
-
       currentLocations = 1;
       removeLocationBtn.disabled = true;
       addLocationBtn.disabled = false;
       addLocationBtn.textContent = "Add Location";
-
     } else if (this.value === "Y") {
-  // SAME as garaging → hide & FULLY reset ALL locations (including Location 1)
-  garagingSection.classList.add("hidden");
-
-  // Clear Location 1 FIRST (critical fix)
-  clearLocationFields(1);
-  
-  // Hide ALL locations (1-6)
-  for (let i = 1; i <= maxLocations; i++) {
-    const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
-    if (locationDiv) {
-      locationDiv.classList.add("hidden");
-      
-      // Double-clear all inputs & selects in this location
-      const inputs = locationDiv.querySelectorAll("input, select");
-      inputs.forEach(input => {
-        input.value = "";
-      });
+      garagingSection.classList.add("hidden");
+      clearLocationFields(1);
+      for (var i = 1; i <= maxLocations; i++) {
+        var locationDiv = locationsContainer.querySelector('[data-location="' + i + '"]');
+        if (locationDiv) {
+          locationDiv.classList.add("hidden");
+          var inputs = locationDiv.querySelectorAll("input, select");
+          inputs.forEach(function(input) {
+            input.value = "";
+          });
+        }
+        var fieldId = locationFieldIds[i];
+        var field = document.getElementById(fieldId);
+        if (field) field.value = "N";
+      }
+      currentLocations = 1;
+      addLocationBtn.disabled = false;
+      addLocationBtn.textContent = "Add Location";
+      removeLocationBtn.disabled = true;
     }
-    
-    // Reset hidden Salesforce Y/N flags to "N"
-    const fieldId = locationFieldIds[i];
-    const field = document.getElementById(fieldId);
-    if (field) field.value = "N";
-  }
-
-  // Reset counter and buttons
-  currentLocations = 1;
-  addLocationBtn.disabled = false;
-  addLocationBtn.textContent = "Add Location";
-  removeLocationBtn.disabled = true;
-}
     updateGaragingFields();
   });
 });
+
 /* ===================== GARAGING LOCATIONS MANAGEMENT ===================== */
-let currentLocations = 1;
-const maxLocations = 6;
-const locationFieldIds = {
+var currentLocations = 1;
+var maxLocations = 6;
+var locationFieldIds = {
 1: '00NU7000007xdm5',
 2: '00NU7000007xdsX',
 3: '00NU7000007xdyz',
@@ -1117,20 +1116,20 @@ const locationFieldIds = {
 };
 
 function updateGaragingFields() {
-const sameAsGaraging = document.querySelector('input[name="sameAsGaraging"]:checked');
+var sameAsGaraging = document.querySelector('input[name="sameAsGaraging"]:checked');
 if (sameAsGaraging && sameAsGaraging.value === "N") {
-for (let i = 1; i <= maxLocations; i++) {
-const fieldId = locationFieldIds[i];
-const field = document.getElementById(fieldId);
-const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+for (var i = 1; i <= maxLocations; i++) {
+var fieldId = locationFieldIds[i];
+var field = document.getElementById(fieldId);
+var locationDiv = locationsContainer.querySelector('[data-location="' + i + '"]');
 if (field) {
 field.value = locationDiv && !locationDiv.classList.contains('hidden') ? 'Y' : 'N';
 }
 }
 } else {
-for (let i = 1; i <= maxLocations; i++) {
-const fieldId = locationFieldIds[i];
-const field = document.getElementById(fieldId);
+for (var i = 1; i <= maxLocations; i++) {
+var fieldId = locationFieldIds[i];
+var field = document.getElementById(fieldId);
 if (field) field.value = 'N';
 }
 }
@@ -1139,7 +1138,7 @@ if (field) field.value = 'N';
 addLocationBtn.addEventListener("click", function() {
 if (currentLocations < maxLocations) {
 currentLocations++;
-const locationDiv = locationsContainer.querySelector(`[data-location="${currentLocations}"]`);
+var locationDiv = locationsContainer.querySelector('[data-location="' + currentLocations + '"]');
 if (locationDiv) {
 locationDiv.classList.remove("hidden");
 }
@@ -1154,7 +1153,7 @@ addLocationBtn.textContent = "Max Locations Reached";
 
 removeLocationBtn.addEventListener("click", function() {
 if (currentLocations > 1) {
-const locationDiv = locationsContainer.querySelector(`[data-location="${currentLocations}"]`);
+var locationDiv = locationsContainer.querySelector('[data-location="' + currentLocations + '"]');
 if (locationDiv) {
 locationDiv.classList.add("hidden");
 }
@@ -1168,7 +1167,7 @@ removeLocationBtn.disabled = true;
 }
 });
 
-const requiredFields = [
+var requiredFields = [
 { id: "email", label: "Email", type: "email" },
 { radioGroupName: "requestTypeRadios", label: "Select the Request Type:" },
 { id: "00NU7000005zuX3", label: "Policy Number" },
@@ -1177,23 +1176,23 @@ const requiredFields = [
 { radioGroupName: "sameAsGaraging", label: "Garaging address selection" }
 ];
 
-/* ===================== VALIDATION - FIXED ===================== */
+/* ===================== VALIDATION ===================== */
 function validateFields() {
-const missing = [];
-requiredFields.forEach(field => {
+var missing = [];
+requiredFields.forEach(function(field) {
 if (field.radioGroupName) {
-const radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
-const checked = [...radios].some(r => r.checked);
+var radios = document.querySelectorAll('input[name="' + field.radioGroupName + '"]');
+var checked = Array.prototype.slice.call(radios).some(function(r) { return r.checked; });
 if (!checked) missing.push(field.label);
 return;
 }
-const el = document.getElementById(field.id);
+var el = document.getElementById(field.id);
 if (!el) return;
 if (field.type === "email") {
 if (!el.value.trim() || !el.checkValidity()) missing.push(field.label);
 } else if (field.type === "date") {
-const val = el.value.trim();
-const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/;
+var val = el.value.trim();
+var dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/;
 if (!val || !dateRegex.test(val)) missing.push(field.label);
 } else {
 if (!el.value.trim()) missing.push(field.label);
@@ -1201,27 +1200,26 @@ if (!el.value.trim()) missing.push(field.label);
 });
 
 if (!mailingSection.classList.contains('hidden')) {
-  const mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
-  mailingRequired.forEach(input => {
+  var mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
+  mailingRequired.forEach(function(input) {
     if (!input.value.trim()) {
-      const labelEl = input.previousElementSibling;
-      const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
-      missing.push(`Mailing Address - ${label}`);
+      var labelEl = input.previousElementSibling;
+      var label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+      missing.push("Mailing Address - " + label);
     }
   });
 }
   
-// ===== ONLY VALIDATE GARAGING IF SECTION VISIBLE =====
 if (!garagingSection.classList.contains('hidden')) {
-  for (let i = 1; i <= currentLocations; i++) {
-    const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+  for (var i = 1; i <= currentLocations; i++) {
+    var locationDiv = locationsContainer.querySelector('[data-location="' + i + '"]');
     if (locationDiv && !locationDiv.classList.contains('hidden')) {
-      const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
-      requiredInputs.forEach(input => {
+      var requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
+      requiredInputs.forEach(function(input) {
         if (!input.value.trim()) {
-          const labelEl = input.previousElementSibling;
-          const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
-          missing.push(`Location ${i} - ${label}`);
+          var labelEl = input.previousElementSibling;
+          var label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+          missing.push("Location " + i + " - " + label);
         }
       });
     }
@@ -1230,68 +1228,153 @@ if (!garagingSection.classList.contains('hidden')) {
 return missing;
 }
 
+/* ===================== ALL FORM DATA AS JSON ===================== */
+function captureAllFormDataAsJSON() {
+  var formData = {};
+  var excludeFields = [
+    "oid", "OrgId", "retURL", "ReturnURL", "first_name", "FirstName",
+    "last_name", "LastName", "status", "Status", "phone", "Phone",
+    "lead_source", "LeadSource", "delete_Action_Form__c", "delete_Action_Form",
+    "company", "Company","requestTypeRadios"
+  ];
+  var fieldMapping = {
+    "email": "Email",
+    "Policy_Number__c": "Policy_Number",
+    "00NU7000005zuNN": "Policy_Action",
+    "Carrier__c": "Carrier",
+    "Date__c": "Effective_Date",
+    "Is_this_a_quote_or_a_change_request__c": "Is_this_a_quote_or_a_change_request",
+    "00NU7000007xdVx": "Do_you_want_to_change_mailing_address",
+    "00NU7000007xdan": "IfChangeGaragingAddress",
+    "00NU7000007AyLR": "Mailing_Address",
+    "00NU7000005zvUj": "City",
+    "00NU7000007qKoD": "State_Central_1",
+    "00NU7000006cbfp": "Interest_Zip_Code",
+    "00NU7000007EGYk": "Vehicle_Year",
+    "00NU70000063XnC": "Vehicle_Name",
+    "00NU7000006qtOL": "Address_Line_1_GL",
+    "00NU7000006qtg5": "Address_Line_1_2_Gl",
+    "00NU7000006qtcr": "City_1_GL",
+    "00NU7000007xgC5": "GaragingStateVehicle1",
+    "00NU7000006qtZd": "Zip_Code_1_GL",
+    "00NU7000007xdm5": "changeGaragingAddressVehicle1",
+    "00NU7000007xebh": "Vehicle_Year_2",
+    "00NU7000007xerp": "Vehicle_Name_2",
+    "00NU7000006qtTB": "Address_Line_2_GL",
+    "00NU7000006qthh": "Address_Line_2_2_GL",
+    "00NU7000006qsRW": "City_2_GL",
+    "00NU7000007xgDh": "GaragingStateVehicle2",
+    "00NU7000006qtjJ": "Zip_Code_2_GL",
+    "00NU7000007xdsX": "changeGaragingAddressVehicle2",
+    "00NU7000007xegX": "Vehicle_Year_3",
+    "00NU7000007xegY": "Vehicle_Name_3",
+    "00NU7000007xfEP": "Address_Line_3_GL",
+    "00NU7000007xfG1": "Address_Line_3_2_GL",
+    "00NU7000007xfvx": "City_3_GL",
+    "00NU7000007xgFJ": "GaragingStateVehicle3",
+    "00NU7000007xeS2": "Zip_Code_3_GL",
+    "00NU7000007xdyz": "changeGaragingAddressVehicle3",
+    "00NU7000007xejl": "Vehicle_Year_4",
+    "00NU7000007xewf": "Vehicle_Name_4",
+    "00NU7000007xfMT": "Address_Line_4_GL",
+    "00NU7000007xfO5": "Address_Line_4_2_GL",
+    "00NU7000007xfxZ": "City_4_GL",
+    "00NU7000007xdz0": "GaragingStateVehicle4",
+    "00NU7000007xgX3": "Zip_Code_4_GL",
+    "00NU7000007xe5R": "changeGaragingAddressVehicle4",
+    "00NU7000007xelN": "Vehicle_Year_5",
+    "00NU7000007xezt": "Vehicle_Name_5",
+    "00NU7000007xc3g": "Address_Line_5_GL",
+    "00NU7000007xeyI": "Address_Line_5_2_GL__c",
+    "00NU7000007xfzB": "City_5_GL",
+    "00NU7000007xgK9": "GaragingStateVehicle5",
+    "00NU7000007xgYf": "Zip_Code_5_GL",
+    "00NU7000007xeGj": "changeGaragingAddressVehicle5",
+    "00NU7000007xeob": "Vehicle_Year_6",
+    "00NU7000007xf4j": "Vehicle_Name_6",
+    "00NU7000007xfXl": "Address_Line_6_GL",
+    "00NU7000007xfcb": "Address_Line_6_2_GL",
+    "00NU7000007xg0n": "City_6_GL",
+    "00NU7000007xgLl": "GaragingStateVehicle6",
+    "00NU7000007xgaH": "Zip_Code_6_GL",
+    "00NU7000007xeIL": "changeGaragingAddressVehicle6"
+  };
+  
+  var formElements = form.querySelectorAll("input, textarea, select");
+  formElements.forEach(function(element) {
+    if (!element.name || element.name === "Form_Captured_Data__c" || element.name === "Form_Missing_Data__c" || element.name === "All_Form_Data__c") return;
+   var mappedName =
+  fieldMapping[element.id] ||
+  fieldMapping[element.name] ||
+  element.name.replace(/__c$/, "");
+    if (excludeFields.indexOf(mappedName) !== -1 || excludeFields.indexOf(element.name) !== -1) return;
+    if (mappedName === "Effective_Date") {
+      formData[mappedName] = formatToISO(element.value || "");
+    } else {
+      formData[mappedName] = element.value || "";
+    }
+  });
+  return JSON.stringify(formData, null, 2);
+}
+
 /* ===================== FORM CAPTURE ===================== */
 function captureFormData() {
-const missing = [];
-const filled = [];
+var missing = [];
+var filled = [];
 
-// ===== REQUIRED FIELDS =====
-requiredFields.forEach(field => {
+requiredFields.forEach(function(field) {
 if (field.radioGroupName) {
-const radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
-const checked = [...radios].find(r => r.checked);
+var radios = document.querySelectorAll('input[name="' + field.radioGroupName + '"]');
+var checked = Array.prototype.slice.call(radios).find(function(r) { return r.checked; });
 if (checked) {
-const label = field.label;
-const value = checked.value;
-filled.push(`${label} = ${value}`);
+var label = field.label;
+var value = checked.value;
+filled.push(label + " = " + value);
 } else {
 missing.push(field.label);
 }
 return;
 }
 
-const el = document.getElementById(field.id);
+var el = document.getElementById(field.id);
 if (!el || !el.value.trim()) {
 missing.push(field.label);
 } else {
-filled.push(`${field.label} = ${el.value.trim()}`);
+filled.push(field.label + " = " + el.value.trim());
 }
 });
 
-// ===== MAILING ADDRESS - CAPTURE IF VISIBLE =====
 if (!mailingSection.classList.contains("hidden")) {
-  const mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
-  mailingRequired.forEach(input => {
-    const labelEl = input.previousElementSibling;
-    const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+  var mailingRequired = mailingSection.querySelectorAll('input[required], select[required]');
+  mailingRequired.forEach(function(input) {
+    var labelEl = input.previousElementSibling;
+    var label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
     if (!input.value.trim()) {
-      missing.push(`Mailing Address - ${label}`);
+      missing.push("Mailing Address - " + label);
     } else {
-      filled.push(`Mailing Address - ${label} = ${input.value.trim()}`);
+      filled.push("Mailing Address - " + label + " = " + input.value.trim());
     }
   });
 }
 
-// ===== VISIBLE GARAGING LOCATIONS =====
-for (let i = 1; i <= currentLocations; i++) {
-const locationDiv = locationsContainer.querySelector(`[data-location="${i}"]`);
+for (var i = 1; i <= currentLocations; i++) {
+var locationDiv = locationsContainer.querySelector('[data-location="' + i + '"]');
 if (locationDiv && !locationDiv.classList.contains("hidden")) {
-const requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
-requiredInputs.forEach(input => {
-const labelEl = input.previousElementSibling;
-const label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
+var requiredInputs = locationDiv.querySelectorAll('input[required], select[required]');
+requiredInputs.forEach(function(input) {
+var labelEl = input.previousElementSibling;
+var label = labelEl ? labelEl.textContent.replace("*", "").trim() : "Field";
 if (!input.value.trim()) {
-missing.push(`Location ${i} - ${label}`);
+missing.push("Location " + i + " - " + label);
 } else {
-filled.push(`Location ${i} - ${label} = ${input.value.trim()}`);
+filled.push("Location " + i + " - " + label + " = " + input.value.trim());
 }
 });
 }
 }
 
-// ===== WRITE INTO HIDDEN SALESFORCE FIELDS =====
-let missingField = document.getElementById("Form_Missing_Data__c");
-let capturedField = document.getElementById("Form_Captured_Data__c");
+var missingField = document.getElementById("Form_Missing_Data__c");
+var capturedField = document.getElementById("Form_Captured_Data__c");
 
 if (!missingField) {
 missingField = document.createElement("input");
@@ -1311,15 +1394,18 @@ form.appendChild(capturedField);
 
 missingField.value = missing.join("\n");
 capturedField.value = filled.join("\n");
-updateGaragingFields(); // Ensure Y/N fields updated
+updateGaragingFields();
 }
 
 /* ===================== UI FLOW ===================== */
-reviewBtn.addEventListener("click", () => {
-const missing = validateFields();
+reviewBtn.addEventListener("click", function() {
+var missing = validateFields();
+captureFormData();
+allFormDataTextarea.value = captureAllFormDataAsJSON();
+
 if (missing.length) {
 dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
-missingFieldsList.innerHTML = missing.map(f => `<li>${f}</li>`).join("");
+missingFieldsList.innerHTML = missing.map(function(f) { return "<li>" + f + "</li>"; }).join("");
 } else {
 dialogTitle.textContent = "All mandatory fields are completed. Ready to submit your request?";
 missingFieldsList.innerHTML = "";
@@ -1327,19 +1413,20 @@ missingFieldsList.innerHTML = "";
 dialog.classList.remove("hidden");
 });
 
-editBtn.addEventListener("click", () => dialog.classList.add("hidden"));
+editBtn.addEventListener("click", function() { dialog.classList.add("hidden"); });
 
-proceedBtn.addEventListener("click", () => {
+proceedBtn.addEventListener("click", function() {
 captureFormData();
+allFormDataTextarea.value = captureAllFormDataAsJSON();
 dialog.classList.add("hidden");
 form.submit();
 });
 
-window.addEventListener("click", e => {
+window.addEventListener("click", function(e) {
 if (e.target === dialog) dialog.classList.add("hidden");
 });
 
-window.addEventListener("keydown", e => {
+window.addEventListener("keydown", function(e) {
 if (e.key === "Escape" && !dialog.classList.contains("hidden")) {
 dialog.classList.add("hidden");
 }
